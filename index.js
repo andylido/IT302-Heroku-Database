@@ -9,14 +9,11 @@ const pool = new Pool({
   ssl: true
 });
 
-
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/cool', (req, res) => res.send(cool()))
-  .get('/times', (req, res) => res.send(showTimes()))
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect()
@@ -29,7 +26,8 @@ express()
       res.send("Error " + err);
     }
   })
-
+  .get('/cool', (req, res) => res.send(cool()))
+  .get('/times', (req, res) => res.send(showTimes()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
