@@ -1,10 +1,6 @@
-DECLARE @sql NVARCHAR(max)=''
-
-SELECT @sql += ' Drop table ' + QUOTENAME(TABLE_SCHEMA) + '.'+ QUOTENAME(TABLE_NAME) + '; '
-FROM   INFORMATION_SCHEMA.TABLES
-WHERE  TABLE_TYPE = 'BASE TABLE'
-
-Exec Sp_executesql @sql
+DROP TABLE Customer;
+DROP TABLE Employee;
+DROP TABLE Transaction;
 
 CREATE TABLE Customer (
     CustomerID int,
@@ -36,7 +32,7 @@ CREATE TABLE Transaction (
     TransactionID int,
     Transaction_Date date,
     Transaction_Time time,
-    Transaction_ Value float,
+    Transaction_Value float,
     CustomerID int,
     EmployeeID int
 );
