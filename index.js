@@ -5,14 +5,8 @@ const PORT = process.env.PORT || 5000
 
 const { Pool } = require('pg');
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
-
-const { Client } = require('pg');
-const client = new Client({
   connectionString: "postgres://wwhmiddhrxhbrv:77b45dd41ea9cec7c088f4b3f0b956de82c35a0a839ad2df982a66ac9e4515aa@ec2-184-72-221-140.compute-1.amazonaws.com:5432/dct33ivp1i8p9s",
-  ssl: true,
+  ssl: true
 });
 
 express()
@@ -22,7 +16,7 @@ express()
       const client = await pool.connect()
       const result = await client.query('SELECT * FROM employee;');
       const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/employee', results );
+      res.render('pages/db', results );
       client.release();
     } catch (err) {
       console.error(err);
