@@ -1,33 +1,27 @@
 
-
 CREATE TABLE customer (
     customer_id INT PRIMARY KEY,
-    customer_last_name VARCHAR(50) NOT NULL,
     customer_first_name VARCHAR(50) NOT NULL,
+    customer_last_name VARCHAR(50) NOT NULL,
+    customer_email VARCHAR(50),
+    customer_phone VARCHAR(20),
     customer_address1 VARCHAR(50),
     customer_address2 VARCHAR(50),
     customer_city VARCHAR(50),
-    customer_country VARCHAR(50),
-    customer_state VARCHAR(50),
-    customer_zip VARCHAR(9),
-    customer_phone INT,
-    customer_email VARCHAR(50),
-    customer_creation_date TIMESTAMP
+    customer_zip VARCHAR(9)
 );
 
 CREATE TABLE employee (
     employee_id INT PRIMARY KEY,
-    employee_last_name VARCHAR(50) NOT NULL, 
-    employee_first_name VARCHAR(50)NOT NULL,
+    employee_first_name VARCHAR(50) NOT NULL, 
+    employee_last_name VARCHAR(50)NOT NULL,
+    employee_email VARCHAR(50),
+    employee_phone VARCHAR(20),
     employee_address_1 VARCHAR(50),
     employee_address_2 VARCHAR(50),
     employee_city VARCHAR(50),
-    employee_country VARCHAR(50),
-    employee_state VARCHAR(2),
     employee_zip VARCHAR(9),
-    employee_phone INT,
-    employee_hire_date INT,
-    employee_email VARCHAR(50),
+    employee_hire_date VARCHAR(15),
     employee_role VARCHAR(50),
     employee_supervisor_employee_id INT,
     employee_currently_employed BOOLEAN
@@ -35,17 +29,17 @@ CREATE TABLE employee (
 
 CREATE TABLE account (
     account_id INT PRIMARY KEY,
-    account_name VARCHAR(50) NOT NULL,
-    customer_id INT REFERENCES customer(customer_id),
-    employee_id INT REFERENCES employee(employee_id),
+    customer_id INT REFERENCES customer(customer_id) NOT NULL, 
+    employee_id INT REFERENCES employee(employee_id) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    name VARCHAR(50) NOT NULL,
     account_creation_date TIMESTAMP
 );
 
 CREATE TABLE position (
     position_id INT PRIMARY KEY,
     asset_id INT REFERENCES asset(asset_id),
-    position_shares FLOAT(3),
-    position_creation_date TIMESTAMP
+    position_shares FLOAT(3)
 );
 
 CREATE TABLE transaction (
