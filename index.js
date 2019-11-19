@@ -17,6 +17,7 @@ express()
       const result = await client.query('SELECT * FROM employee;');
       const results = { 'results': (result) ? result.rows : null};
       res.render('pages/db', results );
+      console.log(results);
       client.release();
     } catch (err) {
       console.error(err);
