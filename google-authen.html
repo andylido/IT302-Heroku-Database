@@ -1,0 +1,86 @@
+<!-- 
+Google Project info:
+IT302 Google Auth
+studied-airline-259519
+462661554970
+462661554970-9q1v51856hd725jc1qe8bg5oqc5c45k5.apps.googleusercontent.com
+
+-->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    
+    <meta name="google-signin-client_id" content="462661554970-9q1v51856hd725jc1qe8bg5oqc5c45k5.apps.googleusercontent.com">
+    <title>Google Auth Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+    
+    <h2 class="welcome">Pop-out the full screen version of the page, then please sign in to use the form</h2>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <div>Enter the endpoint for your API below</div><br>
+  <div class="form-group">
+    <label for="endpoint">API Endpoint</label>
+    <input type="email" class="form-control" id="endpoint" aria-describedby="emailHelp" placeholder="Enter API endpoint">
+    <small id="endpointHelp" class="form-text text-muted">You can use mine for you intial testing: https://laser-hunter-3000.codio.io/post</small>
+    </div>
+  <div class="form-group">
+    <label for="data">Enter some data (optional)</label>
+    <textarea class="form-control" id="data" rows="3"></textarea>
+  </div>
+    <button disabled class="btn btn-primary" id="sendData">Post Data to Server</button>
+    <div class="alert alert-primary" role="alert">
+      Check console for response
+    </div>
+
+    <hr>
+    <h2>Resources</h2>
+    <ul>
+      <li><a href="https://zellwk.com/blog/async-await-express/">https://zellwk.com/blog/async-await-express/</a></li>
+      <li><a href="https://developers.google.com/identity/sign-in/web/backend-auth">https://developers.google.com/identity/sign-in/web/backend-auth</a></li>      
+      <li><a href="https://repl.it/@DavidHayes3/Google-Auth-post-to-server">https://repl.it/@DavidHayes3/Google-Auth-post-to-server</a></li> 
+      <li><a href="https://codio.com/dhayes0/google-auth-server-side">https://codio.com/dhayes0/google-auth-server-side</a></li> 
+
+    </ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+
+      let profile, idToken;
+
+
+
+      function onSignIn(googleUser) {
+        profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        idToken = googleUser.getAuthResponse().id_token;
+        $(".welcome").text("Welcome " + profile.getName());
+        $("#sendData").prop("disabled",false);
+      }
+
+
+      $("#sendData").on("click", function(e) {
+        let endpoint = "https://laser-hunter-3000.codio.io/post" || $("#endpoint").val() 
+        console.log(endpoint);
+        let postData = {
+          data: $("#data").val(),
+          idToken: idToken
+        }
+        $.post(endpoint, postData, function(response) {
+          console.log(response);
+          $(".alert").show();
+        });
+      })
+    </script>
+  </body>
+</html>
