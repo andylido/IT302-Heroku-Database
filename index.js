@@ -83,6 +83,20 @@ express()
       res.send("Error " + err);
     }
   })
+app.get('/position/:assetCode', (req, res) => {
+    ry {
+      const client = await pool.connect()
+      const result = await client.query('SELECT * FROM position WHERE assetCode = ?',
+                                       req.params.assetCode);
+      const results = { 'results': (result) ? result.rows : null};
+      res.send(result.rows);
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+})
+
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
