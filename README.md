@@ -9,12 +9,12 @@ This project was done following [Getting Started with Node on Heroku](https://de
 Click [here](https://radiant-plains-14011.herokuapp.com/) to access the index page
 
 ## Endpoints
-/customer
-/employee
-/account
-/position
-/transaction
-/security
+- /customer
+- /employee
+- /account
+- /position
+- /transaction
+- /security
 
 ## Documentation
 
