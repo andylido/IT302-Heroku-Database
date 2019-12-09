@@ -1,36 +1,24 @@
-# node-js-getting-started
+# Use Heroku to host a Brokerage Frim Database
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+This is a Node JS application using [Express 4](http://expressjs.com/).
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+This project was done following [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article.
 
-## Running Locally
+## The Database API can be accessed through Heroku
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
+Click [here](https://radiant-plains-14011.herokuapp.com/) to access the index page
 
-```sh
-$ git clone https://github.com/heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
-
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-or
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+## Endpoints
+/customer
+/employee
+/account
+/position
+/transaction
+/security
 
 ## Documentation
 
-For more information about using Node.js on Heroku, see these Dev Center articles:
+Support for using Node.js on Heroku:
 
 - [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
 - [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
